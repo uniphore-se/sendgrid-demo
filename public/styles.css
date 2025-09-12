@@ -1,0 +1,265 @@
+:root {
+    --main-bg-color: #151C11;
+    --head-bg-color: #FEFFCA;
+    --page-body-bg-color: white;
+    --fold-bg-color: #151C11;
+    --main-text-color: white;
+    --primary-text-color: #151C11;
+    --primary-button-color: #151C11;
+    --input-label-color: #151C11;
+    --input-border-color: rgba(20, 16, 35, 0.4);
+    --secondary-text-color: rgba(255, 255, 255, 0.64);
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 300;
+    background-color: var(--main-bg-color);
+    color: var(--main-text-color);
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.spacer[size="xs"] {
+    width: 1px;
+    max-width: 1px;
+}
+
+.spacer[size="sm"] {
+    width: 1em;
+    max-width: 1em;
+}
+
+.spacer[size="s2"] {
+    width: 2em;
+    max-width: 2em;
+}
+
+.spacer[size="m"] {
+    width: 5em;
+    max-width: 5em;
+}
+
+.spacer[size="l"] {
+    width: 8em;
+    max-width: 8em;
+}
+
+.spacer[size="xl"] {
+    width: 12em;
+    max-width: 12em;
+}
+
+.centered {
+    text-align: center;
+}
+
+.align-right {
+    text-align: right;
+}
+
+.content {
+    display: flex;
+    padding: 0 5em;
+}
+
+.content .pane {
+    flex: 1;
+}
+
+.page-header {
+    background-color: var(--head-bg-color);
+    color: var(--primary-text-color);
+    padding: 1em 0;
+}
+
+.page-header .header-logo {
+    display: flex;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.page-header .header-nav {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    justify-content: flex-end;
+    /* font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif */
+}
+
+.header-nav .links {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.header-nav .quick {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.header-nav img {
+    width: 18px;
+    height: 18px;
+    margin: 0 .4em;
+}
+
+.footer-nav {
+    justify-content: space-between;
+}
+
+.footer-nav h5 {
+    font-size: 1em;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.footer-nav p {
+    font-size: 0.75em;
+    color: var(--secondary-text-color);
+}
+
+.page-footer .copyright {
+    font-size: .75em;
+    color: var(--secondary-text-color);
+}
+
+.page-footer .social {
+    justify-content: flex-end;
+}
+
+.page-body {
+    background-color: var(--page-body-bg-color);
+    color: var(--primary-text-color);
+    padding-top: 3em;
+}
+
+.page-body h1 {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 3em;
+    font-weight: 100;
+
+}
+
+.page-fold {
+    background-color: var(--fold-bg-color);
+    color: var(--main-text-color);
+    padding: 3em 0;
+}
+
+.page-footer {
+    padding: 3em 0;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+}
+
+.row>div {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding: 0.5em;
+}
+
+.transitional {
+    transition: visibility 0s 0.5s, opacity 0.5s linear;
+}
+
+.hidden {
+    visibility: hidden;
+    opacity: 0;
+}
+
+hr {
+    border: 0;
+    background-color: var(--main-bg-color);
+    height: 1px;
+}
+
+form>div {
+    padding: 0.25em;
+}
+
+form input {
+    flex: 1;
+}
+
+form .row {
+    justify-content: space-between;
+}
+
+form .label {
+    color: var(--input-label-color);
+    font-weight: 100;
+    margin-bottom: .25em;
+}
+
+input {
+    background-color: transparent;
+    border: 1px solid var(--input-border-color)
+}
+
+input[type="text"],
+input[type="email"],
+input[type="number"] {
+    padding: 0.5em;
+}
+
+button,
+input[type="button"],
+input[type="reset"],
+input[type="cancel"],
+input[type="submit"] {
+    background-color: var(--primary-button-color);
+    color: white;
+    padding: .75em 1.5em;
+    margin: 0;
+    border: 0;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button[type="cancel"],
+input[type="cancel"] {
+    background-color: white;
+    color: var(--primary-text-color);
+    padding: .75em 1.5em;
+    margin: 0;
+    border: 1px solid var(--primary-button-color);
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.item-description {
+    color: #999999;
+}
+
+.text-medium {
+    font-size: 0.8em;
+}
+
+.dot {
+    height: 24px;
+    width: 24px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.checked {
+    color: orange;
+}
+
+img.product {
+    border-radius: 8px;
+}
+
+.instructions {
+    padding: 1em 0;
+    font-size: .8em;
+}

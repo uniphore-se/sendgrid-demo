@@ -1,0 +1,172 @@
+<html>
+
+<head>
+    <title>Global, Inc. | An ActionIQ Real-time Customer Experience Demo</title>
+    <link rel="icon" href="https://www.actioniq.com/wp-content/uploads/cropped-favicon-192x192.png" sizes="192x192">
+    <link rel="stylesheet" href="styles.css">
+    <script src="scripts.js"></script>
+</head>
+
+<body>
+    <div class="page-header">
+        <div class="content">
+            <div class="header-logo">
+                <h1>Global, Inc.</h1>
+            </div>
+            <div class="spacer" size="xl"></div>
+            <div class="header-nav">
+                <div class="links">
+                    <div>What's New</div>
+                    <div>Bestsellers</div>
+                    <div>Apparel</div>
+                    <div>Accessories</div>
+                    <div>Gift</div>
+                    <div>Sale</div>
+                </div>
+                <div class="spacer" size="m"></div>
+                <div class="quick">
+                    <div>
+                        <img src="./images/icon-search.svg" />
+                    </div>
+                    <div>
+                        <img src="./images/icon-user.svg" />
+                    </div>
+                    <div>
+                        <img src="./images/icon-cart.svg" />
+                    </div>
+                </div>
+                <div class="spacer" size="sm"></div>
+                <button>Sign in</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="page-body">
+        <div class="content">
+            <div class="pane">
+                <h1>A More Rewarding<br />Way To Shop</h1>
+                <p>
+                    Global, Inc. Insider invites you to discover our unparalleled rewards program. Enjoy insider
+                    experiences,
+                    special gifts, elite
+                    services and so much more.
+                </p>
+            </div>
+
+            <div class="spacer" size="xl"></div>
+
+            <!-- HubSpot Form Section -->
+            <div class="pane" id="hubspotForm">
+                <div id="thanks" class="hidden transitional">
+                    Thanks!
+                </div>
+                <script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/embed/v2.js"></script>
+                <script>
+hbspt.forms.create({
+    region: "na1",
+    portalId: "2646166",
+    formId: "1ee34bd8-171c-4af1-ba7b-6d2c75996ca9",
+    onFormSubmit: async function(form) {
+        try {
+            // Get email input using plain JS
+            const emailInput = form.querySelector('input[name="email"]');
+            if (!emailInput) return; // no email field found
+            const email = emailInput.value.trim();
+            if (!email) return;
+
+            // Call your Node.js SendGrid endpoint
+            const res = await fetch("/send-email", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "x-api-key": "ritu1625" // must match EMAIL_TRIGGER_SECRET
+                },
+                body: JSON.stringify({
+                    to: email,
+                    firstName: "Friend",   // optional, can pull from form
+                    promoCode: "GLOBAL2022"
+                })
+            });
+
+            const result = await res.json();
+            if (res.ok && result.success) {
+                alert("Welcome email sent successfully!");
+            } else {
+                alert("Failed to send email: " + (result.error || "Unknown error"));
+            }
+
+        } catch (err) {
+            alert("Network error: " + err.message);
+        }
+    }
+});
+</script>
+
+            </div>
+            <!-- End HubSpot Form Section -->
+
+        </div>
+    </div>
+
+    <div class="page-fold">
+        <div class="content">
+            <div class="pane">
+                <img src="./images/Map.png" />
+            </div>
+            <div class="spacer" size="sm"></div>
+            <div class="pane">
+                Our Store
+                <h1>Global, Inc.</h1>
+                <p>
+                    11 Madison Avenue<br />
+                    17th Floor<br />
+                    New York, NY 10010
+                </p>
+                <p>(012) 345-6789</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="page-footer">
+        <div class="content">
+            <div class="pane">
+                <h4>Global, Inc.</h4>
+            </div>
+            <div class="pane content footer-nav">
+                <div>
+                    <h5>Company</h5>
+                    <p>Our Story</p>
+                    <p>Careers</p>
+                </div>
+                <div>
+                    <h5>My Account</h5>
+                    <p>Profile</p>
+                    <p>Orders</p>
+                </div>
+                <div>
+                    <h5>Customer Care</h5>
+                    <p>FAQs</p>
+                    <p>Returns & Exchanges</p>
+                </div>
+                <div>
+                    <h5>Sustainability</h5>
+                    <p>Mission</p>
+                    <p>Methods</p>
+                </div>
+            </div>
+        </div>
+        <div>
+            <br /><br />
+            <br /><br />
+        </div>
+        <div class="content">
+            <div class="pane copyright">
+                &copy;2022 Global, Inc. All rights reserved.
+            </div>
+            <div class="pane"></div>
+            <div class="pane social"></div>
+        </div>
+    </div>
+</body>
+
+</html>
