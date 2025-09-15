@@ -19,7 +19,11 @@ const emailLimiter = rateLimit({
   max: 10,
   message: { error: 'Too many requests. Try again later.' }
 });
-
+app.get('/send-email', (req, res) => {
+  res.status(200).json({
+    message: 'Send email endpoint is alive. Use POST with x-api-key to send emails.'
+  });
+});
 app.post('/send-email', emailLimiter, async (req, res) => {
   const secret = req.headers['x-api-key'];
   if (secret !== process.env.EMAIL_TRIGGER_SECRET) {
