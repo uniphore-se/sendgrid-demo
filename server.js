@@ -28,6 +28,8 @@ const emailLimiter = rateLimit({
 
 app.post('/send-email', emailLimiter, async (req, res) => {
   const secret = req.headers['x-api-key'];
+  console.log('Received x-api-key:', secret); // <--- debug line
+  console.log('Expected EMAIL_TRIGGER_SECRET:', process.env.EMAIL_TRIGGER_SECRET);
   if (secret !== process.env.EMAIL_TRIGGER_SECRET) {
     return res.status(403).json({ error: 'Unauthorized' });
   }
