@@ -14,16 +14,18 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(cors({ origin: process.env.ALLOWED_ORIGIN }));
 app.use(express.json());
 
-const emailLimiter = rateLimit({
-  windowMs: 60 * 60 * 1000,
-  max: 10,
-  message: { error: 'Too many requests. Try again later.' }
-});
 app.get('/send-email', (req, res) => {
   res.status(200).json({
     message: 'Send email endpoint is alive. Use POST with x-api-key to send emails.'
   });
 });
+
+const emailLimiter = rateLimit({
+  windowMs: 60 * 60 * 1000,
+  max: 10,
+  message: { error: 'Too many requests. Try again later.' }
+});
+
 app.post('/send-email', emailLimiter, async (req, res) => {
   const secret = req.headers['x-api-key'];
   if (secret !== process.env.EMAIL_TRIGGER_SECRET) {
@@ -51,8 +53,6 @@ app.post('/send-email', emailLimiter, async (req, res) => {
     res.status(500).json({ error: 'Failed to send email' });
   }
 });
-app.get('/', (req, res) => {
-  res.send('✅ SendGrid Email API is running');
-});
+
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log('Server listening on port', PORT));
