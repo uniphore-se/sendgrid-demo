@@ -75,7 +75,7 @@ hbspt.forms.create({
             if (!email) return;
 
             // Call your Node.js SendGrid endpoint
-            const res = await fetch("/send-email", {
+            const res = await fetch("https://sendgrid-demo.up.railway.app/send-email", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
