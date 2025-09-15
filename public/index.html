@@ -1,172 +1,162 @@
-<html>
-
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <title>Global, Inc. | An ActionIQ Real-time Customer Experience Demo</title>
-    <link rel="icon" href="https://www.actioniq.com/wp-content/uploads/cropped-favicon-192x192.png" sizes="192x192">
-    <link rel="stylesheet" href="styles.css">
-    <script src="scripts.js"></script>
-</head>
-
-<body>
-    <div class="page-header">
-        <div class="content">
-            <div class="header-logo">
-                <h1>Global, Inc.</h1>
-            </div>
-            <div class="spacer" size="xl"></div>
-            <div class="header-nav">
-                <div class="links">
-                    <div>What's New</div>
-                    <div>Bestsellers</div>
-                    <div>Apparel</div>
-                    <div>Accessories</div>
-                    <div>Gift</div>
-                    <div>Sale</div>
-                </div>
-                <div class="spacer" size="m"></div>
-                <div class="quick">
-                    <div>
-                        <img src="./images/icon-search.svg" />
-                    </div>
-                    <div>
-                        <img src="./images/icon-user.svg" />
-                    </div>
-                    <div>
-                        <img src="./images/icon-cart.svg" />
-                    </div>
-                </div>
-                <div class="spacer" size="sm"></div>
-                <button>Sign in</button>
-            </div>
-        </div>
-    </div>
-
-    <div class="page-body">
-        <div class="content">
-            <div class="pane">
-                <h1>A More Rewarding<br />Way To Shop</h1>
-                <p>
-                    Global, Inc. Insider invites you to discover our unparalleled rewards program. Enjoy insider
-                    experiences,
-                    special gifts, elite
-                    services and so much more.
-                </p>
-            </div>
-
-            <div class="spacer" size="xl"></div>
-
-            <!-- HubSpot Form Section -->
-            <div class="pane" id="hubspotForm">
-                <div id="thanks" class="hidden transitional">
-                    Thanks!
-                </div>
-                <script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/embed/v2.js"></script>
-                <script>
-hbspt.forms.create({
-    region: "na1",
-    portalId: "2646166",
-    formId: "1ee34bd8-171c-4af1-ba7b-6d2c75996ca9",
-    onFormSubmit: async function(form) {
-        try {
-            // Get email input using plain JS
-            const emailInput = form.querySelector('input[name="email"]');
-            if (!emailInput) return; // no email field found
-            const email = emailInput.value.trim();
-            if (!email) return;
-
-            // Call your Node.js SendGrid endpoint
-            const res = await fetch("https://sendgrid-demo.up.railway.app/send-email", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    "x-api-key": "ritu1625" // must match EMAIL_TRIGGER_SECRET
-                },
-                body: JSON.stringify({
-                    to: email,
-                    firstName: "Friend",   // optional, can pull from form
-                    promoCode: "GLOBAL2022"
-                })
-            });
-
-            const result = await res.json();
-            if (res.ok && result.success) {
-                alert("Welcome email sent successfully!");
-            } else {
-                alert("Failed to send email: " + (result.error || "Unknown error"));
-            }
-
-        } catch (err) {
-            alert("Network error: " + err.message);
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Global, Inc.</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0; padding: 0;
+      background: #fff;
+      color: #222;
     }
-});
-</script>
+    header {
+      background: #fffecf;
+      display: flex; justify-content: space-between;
+      align-items: center; padding: 1rem 2rem;
+    }
+    header h1 {
+      margin: 0; font-size: 1.5rem;
+    }
+    nav a {
+      margin: 0 0.75rem; text-decoration: none; color: #222;
+      font-weight: 500;
+    }
+    .hero {
+      display: flex; justify-content: space-between;
+      padding: 3rem 5%;
+    }
+    .hero-text {
+      max-width: 45%;
+    }
+    .hero-text h2 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+    .form-card {
+      background: #fff;
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 0 8px rgba(0,0,0,0.1);
+      max-width: 400px;
+      width: 100%;
+    }
+    .form-row {
+      display: flex; gap: 1rem;
+    }
+    .form-row .field {
+      flex: 1;
+    }
+    .field {
+      margin-bottom: 1rem;
+    }
+    label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 0.3rem;
+    }
+    input {
+      width: 100%;
+      padding: 0.5rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    button {
+      display: inline-block;
+      background: #000;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      padding: 0.75rem 1.5rem;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+    button:hover {
+      opacity: 0.9;
+    }
+  </style>
+</head>
+<body>
 
-            </div>
-            <!-- End HubSpot Form Section -->
+  <header>
+    <h1>Global, Inc.</h1>
+    <nav>
+      <a href="#">What's New</a>
+      <a href="#">Bestsellers</a>
+      <a href="#">Apparel</a>
+      <a href="#">Accessories</a>
+      <a href="#">Gift</a>
+      <a href="#">Sale</a>
+      <a href="#" style="background:#000;color:#fff;padding:0.4rem 0.8rem;border-radius:4px;">Sign In</a>
+    </nav>
+  </header>
 
-        </div>
+  <section class="hero">
+    <div class="hero-text">
+      <h2>A More Rewarding Way To Shop</h2>
+      <p>Global, Inc. Insider invites you to discover our unparalleled rewards program.
+      Enjoy insider experiences, special gifts, elite services and so much more.</p>
     </div>
+    <form class="form-card" id="signupForm">
+      <div class="form-row">
+        <div class="field">
+          <label>First Name*</label>
+          <input type="text" name="firstName" required>
+        </div>
+        <div class="field">
+          <label>Last Name*</label>
+          <input type="text" name="lastName" required>
+        </div>
+      </div>
+      <div class="field">
+        <label>Email*</label>
+        <input type="email" name="email" required>
+      </div>
+      <div class="field">
+        <label>Phone number</label>
+        <input type="text" name="phone">
+      </div>
+      <div class="field">
+        <label>Postal code</label>
+        <input type="text" name="postal">
+      </div>
+      <button type="submit">Submit</button>
+    </form>
+  </section>
 
-    <div class="page-fold">
-        <div class="content">
-            <div class="pane">
-                <img src="./images/Map.png" />
-            </div>
-            <div class="spacer" size="sm"></div>
-            <div class="pane">
-                Our Store
-                <h1>Global, Inc.</h1>
-                <p>
-                    11 Madison Avenue<br />
-                    17th Floor<br />
-                    New York, NY 10010
-                </p>
-                <p>(012) 345-6789</p>
-            </div>
-        </div>
-    </div>
+  <script>
+    document.getElementById("signupForm").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const email = e.target.email.value.trim();
+      if (!email) {
+        alert("Please enter an email");
+        return;
+      }
+      try {
+        const res = await fetch("https://sendgrid-demo.up.railway.app/send-email", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "x-api-key": "ritu1625"   // must match EMAIL_TRIGGER_SECRET on server
+          },
+          body: JSON.stringify({
+            to: email,
+            firstName: e.target.firstName.value,
+            promoCode: "GLOBAL2022"
+          })
+        });
+        const data = await res.json();
+        if (res.ok && data.success) {
+          alert("Welcome email sent to " + email + "!");
+        } else {
+          alert("Error sending email: " + (data.error || "Unknown error"));
+        }
+      } catch (err) {
+        alert("Network error: " + err.message);
+      }
+    });
+  </script>
 
-    <div class="page-footer">
-        <div class="content">
-            <div class="pane">
-                <h4>Global, Inc.</h4>
-            </div>
-            <div class="pane content footer-nav">
-                <div>
-                    <h5>Company</h5>
-                    <p>Our Story</p>
-                    <p>Careers</p>
-                </div>
-                <div>
-                    <h5>My Account</h5>
-                    <p>Profile</p>
-                    <p>Orders</p>
-                </div>
-                <div>
-                    <h5>Customer Care</h5>
-                    <p>FAQs</p>
-                    <p>Returns & Exchanges</p>
-                </div>
-                <div>
-                    <h5>Sustainability</h5>
-                    <p>Mission</p>
-                    <p>Methods</p>
-                </div>
-            </div>
-        </div>
-        <div>
-            <br /><br />
-            <br /><br />
-        </div>
-        <div class="content">
-            <div class="pane copyright">
-                &copy;2022 Global, Inc. All rights reserved.
-            </div>
-            <div class="pane"></div>
-            <div class="pane social"></div>
-        </div>
-    </div>
 </body>
-
 </html>
